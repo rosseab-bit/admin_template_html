@@ -21,7 +21,7 @@ const SearchFile = ({showModalLoad, setShowModalLoad, searchFile, setSearchFile}
   }
   return (
     <>
-      <div className="container-search">
+    <div className="container-search">
         <ThemeProvider theme={theme}>
           <TextField
             className="input-search"

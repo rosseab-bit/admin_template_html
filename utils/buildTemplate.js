@@ -52,7 +52,6 @@ class BuildTemplate {
             let sampleFile;
             let uploadPath;
             console.log(req.files);
-            console.log(req.data);
             if (!req.files || Object.keys(req.files).length === 0) {
                 return res.status(400).send("No files were uploaded.");
             }

@@ -7,17 +7,17 @@ import { useState } from "react";
 const ContainerDrive = () => {
   const [typeSelected, setTypeSelected] = useState("");
   const [showModalLoad, setShowModalLoad] = useState(false);
-  const [ searchFile, setSearchFile ] = useState('');
+  const [searchFile, setSearchFile] = useState("");
   return (
     <>
       <div className="container">
+        <SearchFile
+          showModalLoad={showModalLoad}
+          setShowModalLoad={setShowModalLoad}
+          searchFile={searchFile}
+          setSearchFile={setSearchFile}
+        />
         <div className="sections">
-          <SearchFile
-            showModalLoad={showModalLoad}
-	  setShowModalLoad={setShowModalLoad}
-	  searchFile={searchFile}
-	  setSearchFile={setSearchFile}
-          />
           <RecentsFiles />
           <OperationsFiles
             typeSelected={typeSelected}
@@ -25,7 +25,10 @@ const ContainerDrive = () => {
           />
         </div>
       </div>
-      <ModalFormUpload showModalLoad={showModalLoad} setShowModalLoad={setShowModalLoad} />
+      <ModalFormUpload
+        showModalLoad={showModalLoad}
+        setShowModalLoad={setShowModalLoad}
+      />
     </>
   );
 };

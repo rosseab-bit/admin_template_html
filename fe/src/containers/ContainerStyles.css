@@ -9,7 +9,7 @@
 .sections {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   align-items: center;
   width: 100%;

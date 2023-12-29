@@ -1,8 +1,11 @@
 import Modal from "react-modal";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import "./ReusableStyles.css";
+import React, { useRef } from "react";
 
 const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
+  const fileInputRef = useRef(null);
   Modal.setAppElement("#root");
   const customStyles = {
     content: {
@@ -12,7 +15,17 @@ const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      height: "200px",
+      width: "300px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      alignItems: "center",
     },
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
   };
   const uploadFile = async (e) => {
     console.log(e.target.value);
@@ -42,8 +55,22 @@ const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
         contentLabel="Modal Form"
         style={customStyles}
       >
-        <p>Seleccione archivo a cargar.</p>
-        <input type="file" onChange={uploadFile}></input>
+        <lavel className="input-upload-file">
+          <input
+            style={{ display: "none" }}
+            type="file"
+            onChange={uploadFile}
+            ref={fileInputRef}
+          ></input>
+          Subir Archivo
+        </lavel>
+        <Button
+          className="button-load"
+          variant="outlined"
+          onClick={handleButtonClick}
+        >
+          Cargar
+        </Button>
       </Modal>
     </>
   );
