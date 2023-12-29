@@ -5,33 +5,33 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import DescriptionIcon from '@mui/icons-material/Description';
 let menuList = [
   {
-    icon: <FolderIcon />,
+    icon: <FolderIcon className="icon-item-menu" />,
     iconName: 'Carpetas',
     code: 1,
   },
   {
-    icon: <PhotoSizeSelectActualIcon /> ,
+    icon: <PhotoSizeSelectActualIcon className="icon-item-menu"/> ,
     iconName: 'Imagenes',
     code: 2,
   },
   {
-    icon: <VideoLibraryIcon /> ,
+    icon: <VideoLibraryIcon className="icon-item-menu"/> ,
     iconName: 'Videos',
     code: 3
   },
   {
-    icon: <DescriptionIcon />,
+    icon: <DescriptionIcon className="icon-item-menu"/>,
     iconName: 'Documentos',
     code: 4
   },
 ];
-const MenuLeft = () => {
+  const MenuLeft = ({typeSelected, setTypeSelected}) => {
   return (
     <>
     <div className="menu-items-container">
       {menuList.map((value, key) => (
       <>
-      <div className="menu-item">
+      <div className="menu-item" onClick={() =>setTypeSelected(value.iconName)}>
 	{value.icon} <p className="name-menu-item">{value.iconName}</p>
       </div>
   </>

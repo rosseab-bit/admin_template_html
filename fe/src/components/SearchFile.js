@@ -1,4 +1,5 @@
 import "./ComponentsStyles.css";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -13,7 +14,11 @@ const theme = createTheme({
   },
 });
 
-const SearchFile = () => {
+const SearchFile = ({showModalLoad, setShowModalLoad, searchFile, setSearchFile}) => {
+  console.log({searchFile});
+  const handleChangeField = (e) => {
+    setSearchFile(e.target.value);
+  }
   return (
     <>
       <div className="container-search">
@@ -22,11 +27,16 @@ const SearchFile = () => {
             className="input-search"
             id="standard-basic"
             label="Buscar archivo"
-            variant="standard"
+	  variant="standard"
+	  value={searchFile}
+	  onChange={handleChangeField}
           />
         </ThemeProvider>
         <Button className="search-button" variant="outlined">
           Buscar
+        </Button>
+	<Button className="search-button" variant="outlined" onClick={() => setShowModalLoad(true)}>
+          Cargar 
         </Button>
       </div>
     </>

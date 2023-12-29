@@ -1,15 +1,15 @@
 import "./ComponentsStyles.css";
 import MenuLeft from "./MenuLeft";
 
-const OperationsFiles = () => {
+const OperationsFiles = ({typeSelected, setTypeSelected}) => {
   return (
     <>
     <div className="operations-container">
       <div className="menu-section">
-	<MenuLeft />
+	<MenuLeft typeSelected={typeSelected} setTypeSelected={setTypeSelected} />
       </div>
       <div className="files-section">
-	Files
+	<p>Seleccionaste ver: {typeSelected}</p>
       </div>
     </div>
     </>

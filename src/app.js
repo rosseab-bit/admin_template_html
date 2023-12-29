@@ -8,7 +8,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const routes_1 = require("../routes/routes");
 const app = (0, express_1.default)();
-const port = 3000;
+const port = 3001;
 app.use(cors());
 app.use(express_1.default.json());
 app.use(fileUpload());

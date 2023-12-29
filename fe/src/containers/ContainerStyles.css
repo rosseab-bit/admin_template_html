@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
   height: 100vh;
+  margin-top:0px;
 }
 .sections {
   display: flex;
