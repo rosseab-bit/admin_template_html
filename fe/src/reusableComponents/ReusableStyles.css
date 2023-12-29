@@ -1,0 +1,10 @@
+.input-upload-file {
+  color: #A2A2A2;
+}
+.button-load {
+  height: 30px !important;
+  margin-left: 10px !important;
+  border-color: #A2A2A2 !important;
+  color: #A2A2A2 !important;
+  margin-bottom: -15px !important;
+}
