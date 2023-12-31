@@ -33,7 +33,7 @@ const RecentsFiles = () => {
 	<>
 	<div className="icon-recent-description">
 	  {value.icon}
-	  <p>{value.iconName}</p>
+	  <p className="name-file-operation">{value.iconName}</p>
 	</div>
     </>
         ))}
