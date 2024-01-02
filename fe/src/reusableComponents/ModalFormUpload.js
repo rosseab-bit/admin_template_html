@@ -36,7 +36,7 @@ const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
     formData.append("test", e.target.files[0]);
 
     try {
-      const response = await fetch("http://192.168.0.161:3001/upload", {
+      const response = await fetch("http://192.168.0.153:3001/upload", {
         method: "POST",
         body: formData,
       });
@@ -47,6 +47,9 @@ const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
       console.error("Error al enviar el formulario:", error);
     }
   };
+  const cancelUpload = () => {
+    setShowModalLoad(false);
+  }
   return (
     <>
       <Modal
@@ -70,6 +73,13 @@ const ModalFormUpload = ({ showModalLoad, setShowModalLoad }) => {
           onClick={handleButtonClick}
         >
           Cargar
+        </Button>
+        <Button
+          className="button-load"
+          variant="outlined"
+          onClick={cancelUpload}
+        >
+         Cancelar 
         </Button>
       </Modal>
     </>

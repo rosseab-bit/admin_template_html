@@ -11,32 +11,35 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
     const getDataFiles = async () => {
       if (typeSelected === "Imagenes") {
         try {
-          const response = await fetch("http://192.168.0.161:3001/listimg");
+          const response = await fetch("http://192.168.0.153:3001/listimg");
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
         } catch (err) {
-          console.log("error al traer la data: ", err);
+	  console.log("error al traer la data: ", err);
+	  setDataView([]);
         }
       }
       if (typeSelected === "Documentos") {
         try {
-          const response = await fetch("http://192.168.0.161:3001/listdoc");
+          const response = await fetch("http://192.168.0.153:3001/listdoc");
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
         } catch (err) {
           console.log("error al traer la data: ", err);
+	  setDataView([]);
         }
       }
       if (typeSelected === "Videos") {
         try {
-          const response = await fetch("http://192.168.0.161:3001/listvideo");
+          const response = await fetch("http://192.168.0.153:3001/listvideo");
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
         } catch (err) {
           console.log("error al traer la data: ", err);
+	  setDataView([]);
         }
       }
     };

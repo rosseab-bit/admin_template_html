@@ -12,3 +12,5 @@ exports.defaultRoute.get('/listfile', manageFiles_1.ControllerFiles.listFiles);
 exports.defaultRoute.get('/listimg', manageFiles_1.ControllerFiles.listImages);
 exports.defaultRoute.get('/listdoc', manageFiles_1.ControllerFiles.listDocs);
 exports.defaultRoute.get('/listvideos', manageFiles_1.ControllerFiles.listVideos);
+exports.defaultRoute.get('/download', manageFiles_1.ControllerFiles.downloadFile);
+exports.defaultRoute.get('/recents', manageFiles_1.ControllerFiles.listRecentsFiles);

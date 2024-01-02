@@ -11,12 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManageFiles = void 0;
 const fs = require("fs");
+const path = require("path");
 class ManageFiles {
     /* obtengo todos los archivos y carpetas de uploads */
     listFiles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            fs.readdir("/home/hunter/Escritorio/developer/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -34,7 +35,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listImg = [];
-            fs.readdir("/home/hunter/Escritorio/developer/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -60,7 +61,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listDocs = [];
-            fs.readdir("/home/hunter/Escritorio/developer/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -89,7 +90,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listVideos = [];
-            fs.readdir("/home/hunter/Escritorio/developer/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -114,6 +115,62 @@ class ManageFiles {
                 });
                 res.status(200).json({ files: listVideos });
                 console.log({ listVideos });
+            });
+        });
+    }
+    downloadFile(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const file_name = req.query.name;
+            const filePath = path.join(__dirname, "/uploads/", file_name); // Ruta completa del archivo que deseas servir
+            // Verificar si el archivo existe
+            fs.access(filePath, fs.constants.F_OK, (err) => {
+                if (err) {
+                    return res.status(404).send("Archivo no encontrado");
+                }
+                // Configurar las cabeceras para indicar que es un archivo para descargar
+                const file_download = `attachment; filename=${req.query.name}`;
+                res.setHeader("Content-Disposition", file_download);
+                res.setHeader("Content-Type", "application/octet-stream");
+                // Crear un stream de lectura y enviar el archivo al cliente
+                const fileStream = fs.createReadStream(filePath);
+                fileStream.pipe(res);
+            });
+        });
+    }
+    listRecentsFiles(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req);
+            let only_files = [];
+            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+                if (err) {
+                    console.error("Error al leer el directorio:", err);
+                    res.status(404).json({ error: err });
+                    return;
+                }
+                files.forEach((file) => {
+                    let route_file = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${file}`;
+                    fs.stat(route_file, (err, stats) => {
+                        if (err) {
+                            return console.error("Error al obtener información del archivo:", err);
+                        }
+                        if (stats.isFile()) {
+                            console.log(`${file} - última modificación: ${stats.mtime}`);
+                            only_files.push({
+                                nombre: file,
+                                fechaModificacion: stats.mtime,
+                            });
+                        }
+                    });
+                    console.log(file);
+                    console.log(only_files);
+                });
+                only_files.sort((a, b) => b.fechaModificacion - a.fechaModificacion);
+                const ultimosArchivos = only_files.slice(0, 5);
+                console.log('ULTIMOS');
+                ultimosArchivos.forEach((archivo) => {
+                    console.log(`${archivo.nombre} - última modificación: ${archivo.fechaModificacion}`);
+                });
+                res.status(200).json({ files: files });
             });
         });
     }

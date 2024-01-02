@@ -54,6 +54,12 @@
 .icon-item-recent-video {
   color: #FF0000;
 }
+.icon-item-recent-pdf{
+  color: #A40000;
+}
+.icon-item-recent-txt{
+  color: #757575;
+}
 .icon-item-recent-documents{
   color: #2B67F3;
 }

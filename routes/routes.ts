@@ -11,3 +11,5 @@ defaultRoute.get('/listfile', ControllerFiles.listFiles);
 defaultRoute.get('/listimg', ControllerFiles.listImages); 
 defaultRoute.get('/listdoc', ControllerFiles.listDocs); 
 defaultRoute.get('/listvideos', ControllerFiles.listVideos); 
+defaultRoute.get('/download', ControllerFiles.downloadFile); 
+defaultRoute.get('/recents', ControllerFiles.listRecentsFiles); 
