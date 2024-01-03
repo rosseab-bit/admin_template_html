@@ -139,8 +139,9 @@ class ManageFiles {
     }
     listRecentsFiles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req);
+            console.log(req.body);
             let only_files = [];
+            let testList = [];
             fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
@@ -149,28 +150,25 @@ class ManageFiles {
                 }
                 files.forEach((file) => {
                     let route_file = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${file}`;
-                    fs.stat(route_file, (err, stats) => {
-                        if (err) {
-                            return console.error("Error al obtener información del archivo:", err);
-                        }
-                        if (stats.isFile()) {
-                            console.log(`${file} - última modificación: ${stats.mtime}`);
-                            only_files.push({
-                                nombre: file,
-                                fechaModificacion: stats.mtime,
-                            });
-                        }
-                    });
+                    testList.push(route_file);
+                    const stats = fs.statSync(route_file);
+                    if (stats.isFile()) {
+                        only_files.push({
+                            nombre: file,
+                            fechaModificacion: stats.mtime,
+                        });
+                    }
                     console.log(file);
                     console.log(only_files);
                 });
                 only_files.sort((a, b) => b.fechaModificacion - a.fechaModificacion);
                 const ultimosArchivos = only_files.slice(0, 5);
-                console.log('ULTIMOS');
+                console.log("ULTIMOS", { ultimosArchivos });
+                //let recentsFilesList: any[] = ultimosArchivos;
                 ultimosArchivos.forEach((archivo) => {
-                    console.log(`${archivo.nombre} - última modificación: ${archivo.fechaModificacion}`);
+                    console.log(`${archivo.nombre} - última modificación ahre: ${archivo.fechaModificacion}`);
                 });
-                res.status(200).json({ files: files });
+                res.status(200).json({ files: only_files });
             });
         });
     }

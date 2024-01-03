@@ -31,20 +31,20 @@
   border-width: 1px;*/
 }
 .icon-view-operation{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   width: 10%;
-  height: 5vh;
+  height: 20vh;
   cursor: pointer;
-  margin-bottom: 5px;
   margin-top: 10px;
+  margin-left: 50px;
 }
 .name-file-operation {
   font-size: 12px;
   width: 150px;
   text-align: center;
   overflow-wrap: break-word;
+}
+.image-operation-view{
+  height: 50px;
 }
 
 .icon-item-recent {
@@ -72,21 +72,15 @@
 .icon-recent-description {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   width: 10%;
-  height: 5vh;
-}
-.icon-recent-description p {
-  margin: 0;
-  overflow-wrap: break-word !important;
+  height: 10%;
+  margin: 0px;
 }
 
 .operations-container {
   display: flex;
   width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
   height:100%;
 }
 
@@ -96,15 +90,17 @@
 }
 .files-section {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-content: flex-start;
   margin-right: 65px;
   margin-top:30px;
   border-top-color: #A2A2A2;
   border-top-style: solid;
   border-top-width: 1px;
-  width: 100%;
-  height: 95%;
   overflow-y: auto;
+  width: 100%;
+  height: 95%; 
 
 }
 .menu-items-container {
@@ -145,3 +141,26 @@
 .icon-item-menu:hover {
   color: #FFF;
 }
+
+/* recents component styles */
+.container-items-recents {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 8vh;
+}
+.container-items-recents p {
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin: 10px;
+  text-align:center;
+}
+.icon-download-recents {
+  color: #1D68DA;
+  cursor: pointer;
+}
+/* recents component styles */

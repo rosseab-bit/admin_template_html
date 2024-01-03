@@ -40,7 +40,7 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
         <>
           <div className="icon-view-operation">
             <div className="icon-recent-description" onClick={() => downloadFile(nameFile)}>
-	      <img src={image_url}  height="70" alt={nameFile}/>
+	      <img src={image_url}   className="image-operation-view" alt={nameFile}/>
               <p className="name-file-operation">{nameFile}</p>
             </div>
           </div>
