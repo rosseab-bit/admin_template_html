@@ -6,7 +6,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 let menuList = [
   {
     icon: <FolderIcon className="icon-item-menu" />,
-    iconName: 'Carpetas',
+    iconName: 'Explorar',
     code: 1,
   },
   {

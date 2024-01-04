@@ -42,6 +42,18 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
 	  setDataView([]);
         }
       }
+      if (typeSelected === "Explorar") {
+        try {
+          const response = await fetch("http://192.168.0.153:3001/listfile");
+          const getData = await response.json();
+          console.log("se pide info de imagenes", getData);
+          setDataView(getData.files);
+        } catch (err) {
+          console.log("error al traer la data: ", err);
+	  setDataView([]);
+        }
+      }
+
     };
     getDataFiles();
     console.log("datos recibidos del fetch: ", dataView.files);

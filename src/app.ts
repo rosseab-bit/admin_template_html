@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(defaultRoute)
 //app.use('/imagenes', express.static(path.join(__dirname, 'assets', 'imagenes')));
-app.use('/imagenes', express.static('/media/ricardo/initdev/github/admin_template_html/utils/uploads'));
+app.use('/files', express.static('/media/ricardo/initdev/github/admin_template_html/utils/uploads'));
 
 app.listen(port, () => {
  console.log(`server is listening on ${port}`);

@@ -73,6 +73,21 @@ const RecentsFiles = () => {
   useEffect(() => {
     setUpdateComponent(updateComponent + 1);
   }, [dataRecents]);
+  const openRecents = (nameFile) => {
+    let popUp =  window.confirm("Se abrira el contenido en una nueva pestaña, continuar?")
+    let url_open = `http://localhost:3001/files/${nameFile}`
+    if (popUp === true){
+      window.open(url_open, '_blank');
+    }
+  }
+  const downloadFile = (nameDownload) => {
+    let popUp =  window.confirm("Se se descargara el contenido, continuar?")
+    const url_download =`http://localhost:3001/download?name=${nameDownload}`
+    if (popUp === true){
+      window.location.href = `http://localhost:3001/download?name=${nameDownload}`
+    }
+    //window.open(url_download, '_blank')
+  }
   return (
     <>
       {showSpinner ? (
@@ -83,12 +98,12 @@ const RecentsFiles = () => {
         </>
       ) : (
         <div className="container-items-recents">
-          {dataRecents.slice(4).map((item) => (
+          {dataRecents.slice(0,4).map((item) => (
             <>
               <p>
                 {item.nombre} <br></br> {item.fechaModificacion} <br></br>
-		<DownloadIcon className="icon-download-recents" onClick={() => console.log('clicki')} />
-		<OpenInNewIcon className="icon-download-recents"/>
+		<DownloadIcon className="icon-download-recents" onClick={() => downloadFile(item.nombre)} />
+		<OpenInNewIcon className="icon-download-recents" onClick={() => openRecents(item.nombre)}/>
               </p>
             </>
           ))}

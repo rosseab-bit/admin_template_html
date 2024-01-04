@@ -75,6 +75,7 @@ export class ManageFiles {
             tmp[tmpLength - 1] === "html" ||
             tmp[tmpLength - 1] === "xml" ||
             tmp[tmpLength - 1] === "txt" ||
+            tmp[tmpLength - 1] === "doc" ||
             tmp[tmpLength - 1] === "pptx"
           ) {
             listDocs.push(file);

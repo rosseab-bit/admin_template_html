@@ -43,5 +43,23 @@ const iconDocuments = (type) => {
   }
 
 };
+const iconType = {
+  pdf: {
+    icon:<PictureAsPdfIcon className="icon-item-recent icon-item-recent-pdf" /> 
+  },
+  docx:{
+    icon:<DescriptionIcon className="icon-item-recent icon-item-recent-documents" />
+  },
+  doc:{
+    icon:<DescriptionIcon className="icon-item-recent icon-item-recent-documents" />
+  },
+  txt:{
+    icon:<ArticleIcon className="icon-item-recent icon-item-recent-txt" />
+  },
+  pptx:{
+    icon:<AirplayIcon className="icon-item-recent icon-item-recent-txt" />
+  }
 
-export { iconDocuments };
+}
+
+export { iconDocuments, iconType };
