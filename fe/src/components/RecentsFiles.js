@@ -49,7 +49,7 @@ let recentList = [
         ))}
       </div>
  */
-const RecentsFiles = () => {
+const RecentsFiles = ({searchFile}) => {
   const [dataRecents, setDataRecents] = useState([]);
   const [updateComponent, setUpdateComponent] = useState(0);
   const [showSpinner, setShowSpinner] = useState(false);
@@ -69,6 +69,7 @@ const RecentsFiles = () => {
     setShowSpinner(true);
     getRecentFiles();
     console.log("data recentes", { dataRecents });
+    console.log('SearchFile: ', searchFile);
   }, []);
   useEffect(() => {
     setUpdateComponent(updateComponent + 1);

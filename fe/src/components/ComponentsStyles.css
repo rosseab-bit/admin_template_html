@@ -86,8 +86,15 @@
 }
 
 .menu-section {
-  margin-left: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin-top:30px;
+  border-top-color: #A2A2A2;
+  border-top-style: solid;
+  border-top-width: 1px;
+  background-color: rgba(230, 230, 230, 0.5)
 }
 .files-section {
   display: flex;
@@ -96,7 +103,6 @@
   justify-content: flex-start;
   align-content: flex-start;
   margin-right: 65px;
-  margin-top: 20px;
   border-top-color: #A2A2A2;
   border-top-style: solid;
   border-top-width: 1px;
@@ -109,9 +115,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   height: 30%;
   width: 90%;
-  border-right: 1px solid #A2A2A2;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .menu-item {
   display:flex;
@@ -140,6 +148,18 @@
 }
 .icon-item-menu {
   padding-left: 15px;
+}
+.icon-item-menu-explorer {
+  color: #F8D775 
+}
+.icon-item-menu-image {
+  color: #27A723;
+}
+.icon-item-menu-video {
+  color: #FF0000;
+}
+.icon-item-menu-doc {
+  color: #2B67F3;
 }
 .icon-item-menu:hover {
   color: #FFF;

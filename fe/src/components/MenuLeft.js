@@ -5,22 +5,22 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import DescriptionIcon from '@mui/icons-material/Description';
 let menuList = [
   {
-    icon: <FolderIcon className="icon-item-menu" />,
+    icon: <FolderIcon className="icon-item-menu icon-item-menu-explorer" />,
     iconName: 'Explorar',
     code: 1,
   },
   {
-    icon: <PhotoSizeSelectActualIcon className="icon-item-menu"/> ,
+    icon: <PhotoSizeSelectActualIcon className="icon-item-menu icon-item-menu-image"/> ,
     iconName: 'Imagenes',
     code: 2,
   },
   {
-    icon: <VideoLibraryIcon className="icon-item-menu"/> ,
+    icon: <VideoLibraryIcon className="icon-item-menu icon-item-menu-video"/> ,
     iconName: 'Videos',
     code: 3
   },
   {
-    icon: <DescriptionIcon className="icon-item-menu"/>,
+    icon: <DescriptionIcon className="icon-item-menu icon-item-menu-doc"/>,
     iconName: 'Documentos',
     code: 4
   },

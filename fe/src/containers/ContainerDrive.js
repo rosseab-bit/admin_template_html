@@ -8,6 +8,7 @@ const ContainerDrive = () => {
   const [typeSelected, setTypeSelected] = useState("");
   const [showModalLoad, setShowModalLoad] = useState(false);
   const [searchFile, setSearchFile] = useState("");
+  const [switchSearchRecent, setSwitchSearchRecent] = useState(false);
   return (
     <>
       <div className="container">
@@ -16,9 +17,15 @@ const ContainerDrive = () => {
           setShowModalLoad={setShowModalLoad}
           searchFile={searchFile}
           setSearchFile={setSearchFile}
+          switchSearchRecent={switchSearchRecent}
+          setSwitchSearchRecent={setSwitchSearchRecent}
         />
         <div className="sections">
-          <RecentsFiles />
+          <RecentsFiles
+            searchFile={searchFile}
+            switchSearchRecent={switchSearchRecent}
+            setSwitchSearchRecent={setSwitchSearchRecent}
+          />
           <OperationsFiles
             typeSelected={typeSelected}
             setTypeSelected={setTypeSelected}
