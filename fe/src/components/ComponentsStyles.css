@@ -91,6 +91,7 @@
   justify-content: center;
   align-items: center;
   margin-top:30px;
+  height: 45px;
   border-top-color: #A2A2A2;
   border-top-style: solid;
   border-top-width: 1px;
@@ -116,7 +117,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 30%;
+  height: 100%;
   width: 90%;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -127,7 +128,7 @@
   justify-content:flex-start;
   align-items:center;
   color: #A2A2A2;
-  height: 30px;
+  height: 100%;
   margin-right: 10px;
 }
 .menu-item:hover{
@@ -136,8 +137,7 @@
   justify-content:flex-start;
   align-items:center;
   background-color: #2B67F3;
-  border-radius: 10px;
-  height: 30px;
+  height: 100%;
   color: #FFF ;
   margin-right: 10px;
   cursor: pointer;

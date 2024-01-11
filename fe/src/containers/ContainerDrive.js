@@ -3,12 +3,13 @@ import RecentsFiles from "../components/RecentsFiles";
 import SearchFile from "../components/SearchFile";
 import OperationsFiles from "../components/OperationsFiles";
 import ModalFormUpload from "../reusableComponents/ModalFormUpload";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const ContainerDrive = () => {
   const [typeSelected, setTypeSelected] = useState("");
   const [showModalLoad, setShowModalLoad] = useState(false);
   const [searchFile, setSearchFile] = useState("");
   const [switchSearchRecent, setSwitchSearchRecent] = useState(false);
+
   return (
     <>
       <div className="container">
