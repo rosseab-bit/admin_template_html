@@ -12,12 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManageFiles = void 0;
 const fs = require("fs");
 const path = require("path");
+const jsonConfig = require("./conf.json");
 class ManageFiles {
     /* obtengo todos los archivos y carpetas de uploads */
     listFiles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir(jsonConfig.uploads_path, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -35,7 +36,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listImg = [];
-            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir(jsonConfig.uploads_path, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -61,7 +62,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listDocs = [];
-            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir(jsonConfig.uploads_path, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -91,7 +92,7 @@ class ManageFiles {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             let listVideos = [];
-            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir(jsonConfig.uploads_path, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
@@ -143,14 +144,14 @@ class ManageFiles {
             console.log(req.body);
             let only_files = [];
             let testList = [];
-            fs.readdir("/media/ricardo/initdev/github/admin_template_html/utils/uploads", (err, files) => {
+            fs.readdir(jsonConfig.uploads_path, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });
                     return;
                 }
                 files.forEach((file) => {
-                    let route_file = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${file}`;
+                    let route_file = `${jsonConfig.uploads_path}/${file}`;
                     testList.push(route_file);
                     const stats = fs.statSync(route_file);
                     if (stats.isFile()) {

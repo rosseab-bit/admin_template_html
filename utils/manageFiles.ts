@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const jsonConfig = require("./conf.json");
 export class ManageFiles {
   /* obtengo todos los archivos y carpetas de uploads */
   async listFiles(req: any, res: any) {
     console.log(req.body);
     fs.readdir(
-      "/media/ricardo/initdev/github/admin_template_html/utils/uploads",
+      jsonConfig.uploads_path,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);
@@ -26,7 +27,7 @@ export class ManageFiles {
     console.log(req.body);
     let listImg: any[] = [];
     fs.readdir(
-      "/media/ricardo/initdev/github/admin_template_html/utils/uploads",
+      jsonConfig.uploads_path,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);
@@ -56,7 +57,7 @@ export class ManageFiles {
     console.log(req.body);
     let listDocs: any[] = [];
     fs.readdir(
-      "/media/ricardo/initdev/github/admin_template_html/utils/uploads",
+      jsonConfig.uploads_path,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);
@@ -90,7 +91,7 @@ export class ManageFiles {
     console.log(req.body);
     let listVideos: any[] = [];
     fs.readdir(
-      "/media/ricardo/initdev/github/admin_template_html/utils/uploads",
+      jsonConfig.uploads_path,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);
@@ -148,7 +149,7 @@ export class ManageFiles {
     let only_files: any[] = [];
     let testList: any[] = [];
     fs.readdir(
-      "/media/ricardo/initdev/github/admin_template_html/utils/uploads",
+      jsonConfig.uploads_path,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);
@@ -157,7 +158,7 @@ export class ManageFiles {
         }
 
         files.forEach((file: any) => {
-          let route_file: string = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${file}`;
+          let route_file: string = `${jsonConfig.uploads_path}/${file}`;
           testList.push(route_file);
           const stats = fs.statSync(route_file);
 

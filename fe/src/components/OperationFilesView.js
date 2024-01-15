@@ -4,6 +4,8 @@ import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { iconDocuments, iconType } from "../utils/iconFiles";
+import { useEffect } from "react";
+import { connection }  from "../utils/conf";
 let menuList = [
   {
     icon: <FolderIcon className="icon-item-recent icon-item-recent-folder" />,
@@ -30,14 +32,14 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
   const downloadFile = (nameDownload) => {
     let popUp =  window.confirm("Se se descargara el contenido, continuar?")
     if (popUp === true){
-      const url_download =`http://localhost:3001/download?name=${nameDownload}`
+      const url_download =`http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`
       console.log({url_download});
-      window.location.href = `http://localhost:3001/download?name=${nameDownload}`
+      window.location.href = `http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`
       //window.open(url_download, '_blank')
     }
   }
   const ViewFile = () => {
-      const image_url = `http://localhost:3001/files/${nameFile}`
+      const image_url = `http://${connection.back_ip}:${connection.port}/files/${nameFile}`
     if (typeSelected === "Imagenes") {
       return (
         <>
@@ -92,7 +94,11 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
         </>
       );
     }
-  };
+};
+
+useEffect(() => {
+  console.log('variables locales', connection);
+},[]);
   return (
     <>
     <ViewFile />

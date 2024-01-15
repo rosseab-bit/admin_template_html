@@ -3,6 +3,7 @@ import MenuLeft from "./MenuLeft";
 import { useState, useEffect } from "react";
 import GetFiles from "../utils/GetFiles";
 import OperationFilesView from "./OperationFilesView";
+import { connection } from "../utils/conf";
 const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
   const [dataView, setDataView] = useState([]);
 
@@ -11,7 +12,7 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
     const getDataFiles = async () => {
       if (typeSelected === "Imagenes") {
         try {
-          const response = await fetch("http://192.168.0.153:3001/listimg");
+          const response = await fetch(`http://${connection.back_ip}:${connection.port}/listimg`);
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
@@ -22,7 +23,7 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
       }
       if (typeSelected === "Documentos") {
         try {
-          const response = await fetch("http://192.168.0.153:3001/listdoc");
+          const response = await fetch(`http://${connection.back_ip}:${connection.port}/listdoc`);
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
@@ -33,7 +34,7 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
       }
       if (typeSelected === "Videos") {
         try {
-          const response = await fetch("http://192.168.0.153:3001/listvideo");
+          const response = await fetch(`http://${connection.back_ip}:${connection.port}/listvideo`);
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);
@@ -44,7 +45,7 @@ const OperationsFiles = ({ typeSelected, setTypeSelected }) => {
       }
       if (typeSelected === "Explorar") {
         try {
-          const response = await fetch("http://192.168.0.153:3001/listfile");
+          const response = await fetch(`http://${connection.back_ip}:${connection.port}/listfile`);
           const getData = await response.json();
           console.log("se pide info de imagenes", getData);
           setDataView(getData.files);

@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Box from "@mui/material/Box";
+import { connection }  from "../utils/conf";
 
 let recentList = [
   {
@@ -61,7 +62,7 @@ const RecentsFiles = ({
   const [listAllFiles, setListAllFiles] = useState([]);
   const getRecentFiles = async () => {
     try {
-      const response = await fetch("http://192.168.0.153:3001/recents");
+      const response = await fetch(`http://${connection.back_ip}:${connection.port}/recents`);
       const data = await response.json();
       console.log(data);
       setDataRecents(data.files);
@@ -73,7 +74,7 @@ const RecentsFiles = ({
   };
   const getSearchFiles = async () => {
     try {
-      const response = await fetch("http://192.168.0.153:3001/listfile");
+      const response = await fetch(`http://${connection.back_ip}:${connection.port}/listfile`);
       const data = await response.json();
       console.log(data);
       setListAllFiles(data.files);
