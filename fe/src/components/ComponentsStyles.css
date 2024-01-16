@@ -145,6 +145,7 @@
 .name-menu-item {
   margin-left: 5px;
   padding-right: 15px;
+  color: #000;
 }
 .icon-item-menu {
   padding-left: 15px;
@@ -160,6 +161,9 @@
 }
 .icon-item-menu-doc {
   color: #2B67F3;
+}
+.icon-item-menu-back{
+  color: #000
 }
 .icon-item-menu:hover {
   color: #FFF;

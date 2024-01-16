@@ -3,9 +3,18 @@ import FolderIcon from "@mui/icons-material/Folder";
 import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { iconDocuments, iconType } from "../utils/iconFiles";
+import { iconDocuments, iconType, choiceTypeIcon } from "../utils/iconFiles";
 import { useEffect } from "react";
-import { connection }  from "../utils/conf";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { connection } from "../utils/conf";
+
 let menuList = [
   {
     icon: <FolderIcon className="icon-item-recent icon-item-recent-folder" />,
@@ -13,39 +22,65 @@ let menuList = [
     code: 1,
   },
   {
-    icon: <PhotoSizeSelectActualIcon className="icon-item-recent icon-item-recent-image" />,
+    icon: (
+      <PhotoSizeSelectActualIcon className="icon-item-recent icon-item-recent-image" />
+    ),
     iconName: "Imagenes",
     code: 2,
   },
   {
-    icon: <VideoLibraryIcon className="icon-item-recent icon-item-recent-video" />,
+    icon: (
+      <VideoLibraryIcon className="icon-item-recent icon-item-recent-video" />
+    ),
     iconName: "Videos",
     code: 3,
   },
   {
-    icon: <DescriptionIcon className="icon-item-recent icon-item-recent-documents" />,
+    icon: (
+      <DescriptionIcon className="icon-item-recent icon-item-recent-documents" />
+    ),
     iconName: "Documentos",
     code: 4,
   },
 ];
-const OperationFilesView = ({ typeSelected, nameFile }) => {
+const OperationFilesView = ({
+  typeSelected,
+  nameFile,
+  foldersPath,
+  setFoldersPath,
+}) => {
+  const navigate = useNavigate();
   const downloadFile = (nameDownload) => {
-    let popUp =  window.confirm("Se se descargara el contenido, continuar?")
-    if (popUp === true){
-      const url_download =`http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`
-      console.log({url_download});
-      window.location.href = `http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`
+    let popUp =
+      choiceTypeIcon(nameDownload) != "explorer" &&
+      window.confirm("Se se descargara el contenido, continuar?");
+    if (popUp === true && choiceTypeIcon(nameDownload) != "explorer") {
+      const url_download = `http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`;
+      window.location.href = `http://${connection.back_ip}:${connection.port}/download?name=${nameDownload}`;
       //window.open(url_download, '_blank')
+    } else if (choiceTypeIcon(nameDownload) === "explorer") {
+      let newPath = foldersPath;
+      newPath.path = nameDownload;
+      newPath.pathList.push(nameDownload);
+      setFoldersPath(newPath);
+      navigate(`/path/${nameDownload}`)
     }
-  }
+  };
   const ViewFile = () => {
-      const image_url = `http://${connection.back_ip}:${connection.port}/files/${nameFile}`
+    const image_url = `http://${connection.back_ip}:${connection.port}/files/${nameFile}`;
     if (typeSelected === "Imagenes") {
       return (
         <>
           <div className="icon-view-operation">
-            <div className="icon-recent-description" onClick={() => downloadFile(nameFile)}>
-	      <img src={image_url}   className="image-operation-view" alt={nameFile}/>
+            <div
+              className="icon-recent-description"
+              onClick={() => downloadFile(nameFile)}
+            >
+              <img
+                src={image_url}
+                className="image-operation-view"
+                alt={nameFile}
+              />
               <p className="name-file-operation">{nameFile}</p>
             </div>
           </div>
@@ -53,14 +88,15 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
       );
     }
     if (typeSelected === "Documentos") {
-      const url_download = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${nameFile}`
-      console.log(url_download);
-      console.log(nameFile);
+      const url_download = `/media/ricardo/initdev/github/admin_template_html/utils/uploads/${nameFile}`;
       return (
         <>
           <div className="icon-view-operation">
-	    <div className="icon-recent-description" onClick={() => downloadFile(nameFile)}>
-              {iconDocuments(nameFile.split('.')[1])}
+            <div
+              className="icon-recent-description"
+              onClick={() => downloadFile(nameFile)}
+            >
+              {iconDocuments(nameFile.split(".")[1])}
               <p className="name-file-operation">{nameFile}</p>
             </div>
           </div>
@@ -71,7 +107,10 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
       return (
         <>
           <div className="icon-view-operation">
-            <div className="icon-recent-description" onClick={() => downloadFile(nameFile)}>
+            <div
+              className="icon-recent-description"
+              onClick={() => downloadFile(nameFile)}
+            >
               {menuList[2].icon}
               <p className="name-file-operation">{nameFile}</p>
             </div>
@@ -83,25 +122,35 @@ const OperationFilesView = ({ typeSelected, nameFile }) => {
       return (
         <>
           <div className="icon-view-operation">
-            <div className="icon-recent-description" onClick={() => downloadFile(nameFile)}>
-	      {(nameFile.split('.')[1] === "jpg" || nameFile.split('.')[1] === "png")?
-	      <img src={image_url}   className="image-operation-view" alt={nameFile}/>
-	      :
-	      iconType[nameFile.split('.')[1]].icon}
+            <div
+              className="icon-recent-description"
+              onClick={() => downloadFile(nameFile)}
+            >
+              {choiceTypeIcon(nameFile).response === "image" ? (
+                <img
+                  src={image_url}
+                  className="image-operation-view"
+                  alt={nameFile}
+                />
+              ) : choiceTypeIcon(nameFile).response === "typeok" ? (
+                iconType[choiceTypeIcon(nameFile).type].icon
+              ) : (
+                iconType.expo.icon
+              )}
               <p className="name-file-operation">{nameFile}</p>
             </div>
           </div>
         </>
       );
     }
-};
+  };
 
-useEffect(() => {
-  console.log('variables locales', connection);
-},[]);
+  useEffect(() => {
+  }, []);
   return (
     <>
-    <ViewFile />
-    </>);
+      <ViewFile />
+    </>
+  );
 };
 export default OperationFilesView;
