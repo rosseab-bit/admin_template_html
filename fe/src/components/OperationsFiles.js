@@ -77,6 +77,8 @@ const OperationsFiles = ({
             setTypeSelected={setTypeSelected}
             foldersPath={foldersPath}
             setFoldersPath={setFoldersPath}
+            dataView={dataView}
+            setDataView={setDataView}
           />
         </div>
         <div className="files-section">
@@ -86,6 +88,8 @@ const OperationsFiles = ({
               nameFile={value}
               foldersPath={foldersPath}
               setFoldersPath={setFoldersPath}
+              dataView={dataView}
+              setDataView={setDataView}
             />
           ))}
         </div>

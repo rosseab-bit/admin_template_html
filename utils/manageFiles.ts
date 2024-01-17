@@ -4,9 +4,10 @@ const jsonConfig = require("./conf.json");
 export class ManageFiles {
   /* obtengo todos los archivos y carpetas de uploads */
   async listFiles(req: any, res: any) {
-    console.log(req.body);
+    console.log('---> Body con la ruta para traer los archivos: ',req.query.ruta);
+    let pathSearch: string = req.query.ruta ? `${jsonConfig.uploads_path}/${req.query.ruta}` : jsonConfig.uploads_path
     fs.readdir(
-      jsonConfig.uploads_path,
+      pathSearch,
       (err: any, files: any) => {
         if (err) {
           console.error("Error al leer el directorio:", err);

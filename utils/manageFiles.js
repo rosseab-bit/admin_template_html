@@ -17,8 +17,9 @@ class ManageFiles {
     /* obtengo todos los archivos y carpetas de uploads */
     listFiles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);
-            fs.readdir(jsonConfig.uploads_path, (err, files) => {
+            console.log('---> Body con la ruta para traer los archivos: ', req.query.ruta);
+            let pathSearch = req.query.ruta ? `${jsonConfig.uploads_path}/${req.query.ruta}` : jsonConfig.uploads_path;
+            fs.readdir(pathSearch, (err, files) => {
                 if (err) {
                     console.error("Error al leer el directorio:", err);
                     res.status(404).json({ error: err });

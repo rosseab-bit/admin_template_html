@@ -48,9 +48,11 @@ const OperationFilesView = ({
   nameFile,
   foldersPath,
   setFoldersPath,
+  dataView,
+  setDataView,
 }) => {
   const navigate = useNavigate();
-  const downloadFile = (nameDownload) => {
+  const downloadFile = async (nameDownload) => {
     let popUp =
       choiceTypeIcon(nameDownload) != "explorer" &&
       window.confirm("Se se descargara el contenido, continuar?");
@@ -63,7 +65,20 @@ const OperationFilesView = ({
       newPath.path = nameDownload;
       newPath.pathList.push(nameDownload);
       setFoldersPath(newPath);
-      navigate(`/path/${nameDownload}`)
+      navigate(`/path/${nameDownload}`);
+      const getPathFiles = async (path) => {
+        try {
+          const response = await fetch(
+	    `http://${connection.back_ip}:${connection.port}/listfile?ruta=${path.pathList.join('/')}`
+          );
+          const getData = await response.json();
+          setDataView(getData.files);
+        } catch (err) {
+          console.log("error al traer la data: ", err);
+          setDataView([]);
+        }
+      };
+      getPathFiles(foldersPath);
     }
   };
   const ViewFile = () => {
@@ -145,8 +160,7 @@ const OperationFilesView = ({
     }
   };
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <ViewFile />
